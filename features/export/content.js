@@ -9,7 +9,13 @@ giga.export.capture = async function ({ maxClicks = 25 } = {}) {
   const shared = giga.shared.selectors;
   const sel = giga.export.selectors;
 
-  const expansion = await giga.shared.expandReplies({ maxClicks });
+  // Progress goes to the popup, if it's still open to hear it.
+  const report = message => chrome.runtime.sendMessage({ type: 'giga-export-progress', ...message }).catch(() => {});
+  const expansion = await giga.shared.expandReplies({
+    maxClicks,
+    onProgress: (clicks, max) => report({ stage: 'expanding', clicks, maxClicks: max }),
+  });
+  report({ stage: 'reading' });
 
   const post = document.querySelector(shared.post);
   if (!post) throw new Error('No Reddit post found on this page.');

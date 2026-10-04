@@ -46,6 +46,13 @@ export async function initExport(section) {
     return captures.get(maxClicks);
   };
 
+  chrome.runtime.onMessage.addListener(message => {
+    if (message.type !== 'giga-export-progress') return;
+    status.textContent = message.stage === 'expanding'
+      ? `Expanding replies: ${message.clicks} of up to ${message.maxClicks} clicks…`
+      : 'Reading the thread…';
+  });
+
   for (const button of buttons) {
     button.addEventListener('click', async () => {
       buttons.forEach(b => (b.disabled = true));
