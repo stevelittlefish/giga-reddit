@@ -10,6 +10,7 @@ set -uo pipefail
 
 REPOS=(
   "git@github.com:stevelittlefish/lemon-chat.git"
+  "git@github.com:HejAsh/reddit-session-switcher.git"
 )
 
 cd "$(dirname "$0")"

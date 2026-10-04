@@ -16,7 +16,8 @@ Switch between multiple Reddit accounts in one click, and always know which acco
 
 - Each account's Reddit session cookies are saved and restored with the `chrome.cookies` API. Switching swaps the cookies and reloads the page, with no logout and no password typing.
 - Switching never logs out through Reddit, because that would end the session on Reddit's side and make the saved cookies useless.
-- The exact cookies that make up a Reddit login still need to be confirmed against the live site before implementation.
+- All Reddit cookies are saved and swapped together, so we don't need to know which ones make up a login. This approach comes from [reddit-session-switcher](references/README.md).
+- Before switching away, the current account's cookies are saved again, in case Reddit has refreshed them since they were captured.
 
 **Knowing which account you're on**
 

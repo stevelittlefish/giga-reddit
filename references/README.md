@@ -14,6 +14,7 @@ below saying why it's here and which parts are worth reading.
 | Repository | Why it's here |
 |---|---|
 | [lemon-chat](https://github.com/stevelittlefish/lemon-chat) | **Basis for the page export feature.** Our LLM chat. Its `extensions/save-reddit` extension already captures Reddit threads from the rendered page |
+| [reddit-session-switcher](https://github.com/HejAsh/reddit-session-switcher) | **Basis for the account switcher.** A small MV3 extension that switches Reddit accounts by swapping session cookies |
 
 ## lemon-chat's Reddit capture
 
@@ -38,3 +39,31 @@ Worth reading:
 What it doesn't capture yet: comment timestamps, OP markers, flair, edited
 status, awards and upvote ratio. Bodies are taken with `innerText`, so links
 and formatting are lost.
+
+## reddit-session-switcher
+
+A Manifest V3 extension (about 400 lines of JavaScript) that does the core of
+Giga Reddit's account switcher. It's **MIT licensed**, so code copied from it
+must keep its copyright and licence notice.
+
+How it works (`background.js`):
+
+- **Capture:** `chrome.cookies.getAll({ domain: 'reddit.com' })` saves *every*
+  Reddit cookie for the account, not just chosen login cookies. That avoids
+  having to know which cookies make up a Reddit login.
+- **Switch:** it removes every Reddit cookie, sets the saved ones (including
+  `httpOnly`, `sameSite` and expiry), then reloads the tab. It never logs out.
+- **On-page switcher:** `content.js` adds a floating "Accounts" dropdown to
+  Reddit pages, and moves aside if the RES account switcher is present.
+
+Gaps compared with Giga Reddit's plans:
+
+- Cookies are stored in plain text in `chrome.storage.local`.
+- Before switching away, it doesn't re-save the current account's cookies. If
+  Reddit has refreshed any of them since capture, the saved copy may be out of
+  date. This is unconfirmed and needs testing.
+- The current username is read with `a[data-click-id="user"]`, a selector from
+  the previous new-Reddit markup. It may not match current Reddit. This needs
+  checking.
+- Errors from `chrome.cookies` (`chrome.runtime.lastError`) are ignored.
+- Nothing constantly shows which account is active.
