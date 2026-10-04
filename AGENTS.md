@@ -38,6 +38,46 @@ This project is written in JavaScript **under protest**. JavaScript isn't our ch
 - Node.js is grudgingly allowed **for validation only**: running tests (`node --test`) and syntax checks (`node --check`). The extension itself never depends on Node.js.
 - **No npm packages and no `package.json` dependencies.** If a validation task seems to need an npm package, write it with Node's standard library instead, or ask the master.
 
+## Layout
+
+This is the planned layout. Nothing exists yet. Create files where this says they go, and update this section if the layout has to change.
+
+```
+manifest.json            The extension manifest. The repo root is the extension.
+background.js            Service worker entry (an ES module). Only imports and wires up each feature's background module.
+popup/                   The toolbar popup: popup.html, popup.js, popup.css.
+features/
+  accounts/              Outrage 1: account switcher.
+  export/                Outrage 2: page export.
+  media/                 Outrage 3: media downloader.
+shared/                  Code used by more than one feature (for example, expanding hidden comments).
+vendor/
+  mediabunny/            Vendored library, with LICENSE and VENDOR.md (version and source).
+icons/                   Extension icons.
+tests/                   Node tests, mirroring the paths of the code they test.
+references/              Reference projects. Not part of the extension (see below).
+```
+
+Each feature folder holds everything for that feature, using these file names where they apply:
+
+- `background.js`: the feature's service worker logic, imported by the root `background.js`.
+- `content.js`: the feature's content script, which runs on Reddit pages.
+- `selectors.js`: **all** of the feature's Reddit DOM selectors, and nothing else. When Reddit changes its markup, this is the file to fix.
+- Other files for pure logic, named for what they do (for example `format.js` for building Markdown, or `dash.js` for reading DASH manifests).
+
+### How the pieces fit
+
+- **Content scripts are not ES modules**, because Chrome doesn't allow `import` in them. Their files are listed in order in `manifest.json` (shared files and `selectors.js` before `content.js`) and share one scope. Keep each feature's top-level names prefixed or wrapped so features don't collide.
+- **Content scripts stay thin.** They read the page, click things and return plain data. They don't format output or make decisions that can be made elsewhere.
+- **Pure logic lives in ES modules**, with no `chrome.*` calls and no DOM access, so `node --test` can import it directly. The background service worker, popup and extension pages import these modules. Content scripts can't, which is one more reason to keep them thin.
+
+## Development
+
+- **Load the extension:** open `brave://extensions` (or `chrome://extensions`), turn on developer mode, click **Load unpacked**, and select the repo root. Reload it there after changes.
+- **Run the tests:** `node --test tests/`
+- **Check syntax:** `node --check <file>`
+- **Test against the real Reddit** in Brave with Shields on, logged in. Unit tests can't cover DOM code, so check DOM changes by hand on real threads.
+
 ## Reddit data access
 
 - **Don't use Reddit's `.json` endpoints** (adding `.json` to a Reddit URL). The master has ruled them out.

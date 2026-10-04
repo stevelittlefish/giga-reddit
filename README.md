@@ -66,6 +66,16 @@ Download **all** the media in a Reddit thread, from the post and from every comm
 - **Merging video and audio** uses [Mediabunny](https://github.com/Vanilagy/mediabunny), a JavaScript library for reading and writing media files in the browser. It's the library reddit-video-grabber already uses successfully. It copies the streams without re-encoding, so merging is fast and the quality doesn't change. It's MPL-2.0 licensed, so its licence file ships alongside it.
 - **Save location:** `Downloads/reddit-media/<thread>/`, with one folder per thread and no deeper nesting. The folder name is human readable and unique: subreddit, post ID, then a shortened version of the post title, for example `pics_1abc23_my-cat-is-plotting-something`. Chrome extensions can only save inside the Downloads folder.
 
+## Installing
+
+Giga Reddit isn't on the Chrome Web Store. To install it from this repository:
+
+1. Open `brave://extensions` (or `chrome://extensions` in Chrome).
+2. Turn on **Developer mode**.
+3. Click **Load unpacked** and select this repository's folder.
+
+There's no build step. The repository folder is the extension.
+
 ## Licence
 
 See [LICENCE](LICENCE).
