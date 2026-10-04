@@ -59,11 +59,12 @@ Download **all** the media in a Reddit thread, from the post and from every comm
   - Reddit-hosted video (`v.redd.it`), in posts and comments.
   - Images and GIFs in posts and comments (`i.redd.it`, including GIFs that Reddit serves as MP4).
   - **Every image in a gallery post.**
-  - *Undecided:* media hosted outside Reddit, like Imgur direct links. Streaming sites like YouTube are a separate problem.
+  - **Only media embedded in the thread itself**, meaning what Reddit shows inline. Links to media on other sites (Imgur, YouTube and so on) are not followed.
 - **Reddit video** comes as separate video and audio streams. The downloader picks the best quality of each from the DASH manifest and merges them into one MP4 without re-encoding. If merging fails, it saves the two streams separately.
 - **Images** and single-file MP4s are saved as they are.
 - The toolbar badge shows how many media items were found. There's a **one-click "download everything"**, and you can still download items one at a time.
-- *Undecided:* which library does the merging, and where files are saved.
+- **Merging video and audio** uses [Mediabunny](https://github.com/Vanilagy/mediabunny), a JavaScript library for reading and writing media files in the browser. It's the library reddit-video-grabber already uses successfully. It copies the streams without re-encoding, so merging is fast and the quality doesn't change. It's MPL-2.0 licensed, so its licence file ships alongside it.
+- **Save location:** `Downloads/reddit-media/<thread>/`, with one folder per thread and no deeper nesting. The folder name is human readable and unique: subreddit, post ID, then a shortened version of the post title, for example `pics_1abc23_my-cat-is-plotting-something`. Chrome extensions can only save inside the Downloads folder.
 
 ## Licence
 

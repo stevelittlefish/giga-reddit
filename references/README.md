@@ -19,7 +19,7 @@ below saying why it's here and which parts are worth reading.
 | Repository | Why it's here |
 |---|---|
 | [lemon-chat](https://github.com/stevelittlefish/lemon-chat) | **Basis for the page export feature.** Our LLM chat. Its `extensions/save-reddit` extension already captures Reddit threads from the rendered page |
-| reddit-video-grabber (local only: `~/scratch/reddit-video-grabber`, not yet in git, so `pull.sh` can't fetch it) | **Basis for the media downloader.** The master's earlier extension for downloading Reddit videos and images |
+| reddit-video-grabber (local only, at `~/scratch/reddit-video-grabber` on the master's machine. It's deliberately not in git, so `pull.sh` doesn't fetch it, and it's only readable on that machine) | **Basis for the media downloader.** The master's earlier extension for downloading Reddit videos and images |
 | [reddit-session-switcher](https://github.com/HejAsh/reddit-session-switcher) | **Basis for the account switcher.** A small MV3 extension that switches Reddit accounts by swapping session cookies |
 
 ## lemon-chat's Reddit capture
