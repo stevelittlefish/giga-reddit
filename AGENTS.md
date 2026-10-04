@@ -55,7 +55,7 @@ features/
 shared/                  Code used by more than one feature (for example, expanding hidden comments).
 vendor/
   mediabunny/            Vendored library, with LICENSE and VENDOR.md (version and source).
-icons/                   Extension icons.
+icons/                   Extension icons. icon.svg is the source for 32, 48 and 128; icon16.svg is hand-placed pixels for 16.
 docs/                    Images for the README (the mascot lives here). Not used by the extension.
 tests/                   Node tests, mirroring the paths of the code they test.
 references/              Reference projects. Not part of the extension (see below).
@@ -82,6 +82,7 @@ Each feature folder holds everything for that feature, using these file names wh
 - **Load the extension:** open `brave://extensions` (or `chrome://extensions`), turn on developer mode, click **Load unpacked**, and select the repo root. Reload it there after changes.
 - **Run the tests:** `node --test 'tests/**/*.test.js'` from the repo root. Keep the quotes so Node expands the glob, not the shell. A bare `node --test tests/` doesn't work, because Node treats the folder as a file to run. Test files are named `*.test.js`.
 - **Check syntax:** `node --check <file>`
+- **Re-render the icons** after editing their SVGs: `inkscape icons/icon.svg -w N -h N -o icons/iconN.png` for N = 32, 48 and 128, and the same with `icons/icon16.svg` for 16. The PNGs are committed, so this is only needed when the design changes.
 - **Test against the real Reddit** in Brave with Shields on, logged in. Unit tests can't cover DOM code, so check DOM changes by hand on real threads.
 - **Agent browser tools can't open Reddit.** Claude in Chrome refuses reddit.com ("This site is not allowed due to safety restrictions"), and Claude Code's `/chrome` connects to Google Chrome rather than Brave anyway. To check selectors, give the master a read-only snippet to run in the Brave DevTools console that copies a JSON report to the clipboard with `copy(...)`, and have them paste it back. Snippets must not click or change anything unless that's the point of the test, and then say so. `copy` is a console helper that disappears after an `await`, so an async snippet must save it to a local variable (`const cp = copy;`) before its first `await`. Keep the master's own username and account ID out of the repo, including tests; use made-up ones.
 

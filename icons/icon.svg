@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- The master icon, drawn on a 128 grid. Used for the 32, 48 and 128 PNGs; 16 has its own pixel version, icon16.svg. -->
+  <defs>
+    <clipPath id="tile"><rect x="4" y="4" width="120" height="120" rx="26"/></clipPath>
+    <radialGradient id="glow"><stop offset="0" stop-color="#ff7a4d"/><stop offset="0.4" stop-color="#ff2a00" stop-opacity="0.7"/><stop offset="1" stop-color="#ff2a00" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="26" fill="#141414"/>
+  <g clip-path="url(#tile)">
+    <path d="M62 46 Q64 26 84 21" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="90" cy="20" r="10" fill="#fff"/>
+    <circle cx="91" cy="21" r="4.5" fill="#ff2a00"/>
+    <circle cx="25" cy="60" r="11" fill="#fff"/>
+    <circle cx="103" cy="60" r="11" fill="#fff"/>
+    <ellipse cx="64" cy="78" rx="46" ry="34" fill="#fff"/>
+    <path d="M30 70 L56 78 L52 87 Q36 87 30 70Z" fill="#141414"/>
+    <path d="M33 72 L53 79 L50 84 Q39 84 33 72Z" fill="#ff2a00"/>
+    <path d="M98 70 L72 78 L76 87 Q92 87 98 70Z" fill="#141414"/>
+    <path d="M95 72 L75 79 L78 84 Q89 84 95 72Z" fill="#ff2a00"/>
+    <path d="M50 98 Q64 106 80 95" stroke="#141414" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <circle cx="84" cy="80" r="22" fill="url(#glow)"/>
+    <path d="M84 77 L130 64 L130 78 Z" fill="#ff2a00" opacity="0.9"/>
+    <path d="M84 79 L130 69 L130 73 Z" fill="#ffd0c0"/>
+  </g>
+</svg>
