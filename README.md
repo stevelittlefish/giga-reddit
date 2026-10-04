@@ -12,6 +12,8 @@ A Chrome extension for Reddit that lets you switch between accounts easily, expo
 
 Save several Reddit accounts and switch between them from the toolbar, without logging out or typing passwords. The toolbar icon and a coloured marker on the page show which account you're on, and a "Posting as" label appears next to comment and post boxes.
 
+To add an account, click **Log in another**, log in, then click **Save account**. Don't use Reddit's own "Log Out": it ends the saved session, and you'll have to log in to that account again.
+
 Saved logins never leave your browser. As with any site you stay logged into, someone using your browser could switch to them.
 
 ### Page export
