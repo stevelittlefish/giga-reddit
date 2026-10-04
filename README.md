@@ -49,14 +49,21 @@ One click exports the current Reddit comment thread, including its metadata, in 
 
 ### 3. Media downloader
 
-Download videos and images from Reddit posts and comments, with sound included.
+Download **all** the media in a Reddit thread, from the post and from every comment, with sound included.
 
+- **The goal is completeness.** Every image, video and GIF in the thread gets found, from the post itself and from every comment.
 - It's based on the master's earlier reddit-video-grabber (see [references](references/README.md)).
-- It finds media in two ways. It **watches the media requests a tab makes**, so anything that plays gets caught, including comment GIFs. It also **scans the rendered page** for media links. It doesn't use Reddit's `.json` endpoints.
+- It finds media in two ways. It **watches the media requests a tab makes**, so anything that plays gets caught. It also **scans the rendered page** for media links. It doesn't use Reddit's `.json` endpoints.
+- **Hidden comments are expanded** before scanning, using the same "more replies" expansion as page export, so media in hidden replies isn't missed.
+- **Coverage:**
+  - Reddit-hosted video (`v.redd.it`), in posts and comments.
+  - Images and GIFs in posts and comments (`i.redd.it`, including GIFs that Reddit serves as MP4).
+  - **Every image in a gallery post.**
+  - *Undecided:* media hosted outside Reddit, like Imgur direct links. Streaming sites like YouTube are a separate problem.
 - **Reddit video** comes as separate video and audio streams. The downloader picks the best quality of each from the DASH manifest and merges them into one MP4 without re-encoding. If merging fails, it saves the two streams separately.
 - **Images** and single-file MP4s are saved as they are.
-- The toolbar badge shows how many media items were found on the current page, and you can download one item or all of them.
-- *Undecided:* gallery support, media hosted outside Reddit, which library does the merging, and where files are saved.
+- The toolbar badge shows how many media items were found. There's a **one-click "download everything"**, and you can still download items one at a time.
+- *Undecided:* which library does the merging, and where files are saved.
 
 ## Licence
 
