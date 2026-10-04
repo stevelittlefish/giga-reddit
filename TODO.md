@@ -19,7 +19,7 @@ described in the [README](README.md), and the working rules are in
 
 ## Media downloader
 
-- [ ] Vendor Mediabunny.
+- [x] Vendor Mediabunny.
 - [ ] Find media by watching the tab's network requests and scanning the page.
 - [ ] Merge Reddit video and audio into one MP4, falling back to separate files.
 - [ ] Popup list with per-item downloads, "download everything" and a badge count.
