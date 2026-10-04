@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/mascot.png" alt="The Giga Reddit mascot: an armoured robot Snoo in a red cape" width="360">
+</p>
+
 # Giga Reddit
 
 A Chrome extension that fixes the things about Reddit that shouldn't need fixing.

@@ -56,6 +56,7 @@ shared/                  Code used by more than one feature (for example, expand
 vendor/
   mediabunny/            Vendored library, with LICENSE and VENDOR.md (version and source).
 icons/                   Extension icons.
+docs/                    Images for the README (the mascot lives here). Not used by the extension.
 tests/                   Node tests, mirroring the paths of the code they test.
 references/              Reference projects. Not part of the extension (see below).
 TODO.md                  The high-level plan.
