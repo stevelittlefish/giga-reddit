@@ -70,7 +70,9 @@ Each feature folder holds everything for that feature, using these file names wh
 
 ### How the pieces fit
 
-- **Content scripts are not ES modules**, because Chrome doesn't allow `import` in them. Their files are listed in order in `manifest.json` (shared files and `selectors.js` before `content.js`) and share one scope. Keep each feature's top-level names prefixed or wrapped so features don't collide.
+- **Content scripts are not ES modules**, because Chrome doesn't allow `import` in them. Their files are loaded in order (shared files and `selectors.js` before `content.js`), either listed in `manifest.json` or injected on demand with `chrome.scripting.executeScript`, and share one scope.
+- **One namespace for content scripts.** Every content script file starts with `var giga = globalThis.giga || (globalThis.giga = {});` and hangs its code off it (`giga.shared`, `giga.export` and so on). Injected files can run more than once on the same page, and a second top-level `const` or `class` would throw.
+- **Shared selectors** live in `shared/selectors.js`, by the same rule as a feature's `selectors.js`.
 - **Content scripts stay thin.** They read the page, click things and return plain data. They don't format output or make decisions that can be made elsewhere.
 - **Pure logic lives in ES modules**, with no `chrome.*` calls and no DOM access, so `node --test` can import it directly. The background service worker, popup and extension pages import these modules. Content scripts can't, which is one more reason to keep them thin.
 
