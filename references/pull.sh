@@ -9,6 +9,7 @@
 set -uo pipefail
 
 REPOS=(
+  "git@github.com:stevelittlefish/lemon-chat.git"
 )
 
 cd "$(dirname "$0")"
