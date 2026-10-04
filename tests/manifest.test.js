@@ -49,3 +49,10 @@ test('every file page export injects exists', async () => {
     assert.ok(existsSync(join(root, file)), `missing: ${file}`);
   }
 });
+
+test('every file the media downloader injects exists, and so does its page', async () => {
+  const { FILES } = await import('../features/media/popup.js');
+  for (const file of [...FILES, 'features/media/downloader.html', 'features/media/downloader.js']) {
+    assert.ok(existsSync(join(root, file)), `missing: ${file}`);
+  }
+});

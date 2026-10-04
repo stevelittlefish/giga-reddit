@@ -9,6 +9,11 @@
     "downloads",
     "storage"
   ],
+  "host_permissions": [
+    "https://v.redd.it/*",
+    "https://i.redd.it/*",
+    "https://preview.redd.it/*"
+  ],
   "background": {
     "service_worker": "background.js",
     "type": "module"

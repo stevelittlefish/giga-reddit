@@ -1,0 +1,58 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #1a1a1b;
+  --muted: #6b6f73;
+  --accent: #ff4500;
+  --good: #1a7f37;
+  --bad: #cf222e;
+  --border: #d5d9dc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a1b;
+    --fg: #d7dadc;
+    --muted: #8b8f93;
+    --good: #3fb950;
+    --bad: #f85149;
+    --border: #3a3b3c;
+  }
+}
+
+body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.4 system-ui, sans-serif;
+}
+
+h1 {
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.note {
+  color: var(--muted);
+}
+
+ol {
+  padding-left: 24px;
+}
+
+li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+
+.state {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.done .state { color: var(--good); }
+.failed .state { color: var(--bad); }

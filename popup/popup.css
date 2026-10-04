@@ -50,6 +50,16 @@ h2 {
   gap: 6px;
 }
 
+.buttons > button:only-child {
+  grid-column: 1 / -1;
+}
+
+section + section {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
 button {
   padding: 6px 8px;
   border: 1px solid var(--border);
