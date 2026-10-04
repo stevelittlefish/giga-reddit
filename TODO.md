@@ -40,7 +40,7 @@ described in the [README](README.md), and the working rules are in
 ## Open questions
 
 - [x] Confirm the reddit-video-grabber source is available on this machine. It is, at `~/scratch/reddit-video-grabber`.
-- [ ] Find a reliable way to read the logged-in username on current Reddit.
+- [x] Find a reliable way to read the logged-in username on current Reddit. `GET /user/me/` redirects to `/user/<name>/`, and the page has `rs-current-user` (with `id` and `display-name`) inside a `<template>`, so only the template's `.content` can see it.
 - [ ] Big threads only show about 100 comments at first and load more as you scroll. Find out how, so export and the media downloader can get the rest.
 - [ ] Find the markup for edited comments and comment author flair, so export can include them.
 - [ ] Decide what to do about "More replies" links (Reddit's continue-thread links), which open a separate page instead of loading in place.
