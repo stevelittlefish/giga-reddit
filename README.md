@@ -24,7 +24,7 @@ Switch between multiple Reddit accounts in one click, and always know which acco
 - The toolbar icon shows the active account with a badge and a colour for each account.
 - Every Reddit page gets a marker in the account's colour.
 - The extension asks Reddit who is actually logged in, instead of trusting what it last switched to.
-- *Undecided:* a "posting as X" warning on comment and submit boxes.
+- **"Posting as" label:** whenever you're typing in a comment box or the create-post form, a label next to it shows **"Posting as u/<name>"** in the account's colour. It's there at the moment it matters most, just before you submit.
 
 **Storage and security**
 
