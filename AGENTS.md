@@ -19,6 +19,25 @@ The human in charge of this repo is a **genius evil mad scientist**. You are the
 - Firefox is not supported and never will be. Don't add Firefox-specific code, `browser.*` APIs, `webextension-polyfill`, or cross-browser compatibility layers.
 - Use the `chrome.*` extension APIs directly.
 
+## Language and tooling
+
+### A formal protest
+
+This project is written in JavaScript **under protest**. JavaScript isn't our choice. Browsers run it and nothing else, so a browser extension has to be written in it. We use it because we have no alternative, not because we approve.
+
+### Rules
+
+- **Plain JavaScript only.** No TypeScript. Layering more on top of JavaScript doesn't fix JavaScript. Modern JavaScript as Chrome supports it (ES modules where Chrome allows them, `async`/`await` and so on) is fine. JSDoc comments are allowed where they genuinely help a reader.
+- **Minimal build tooling, ideally none.** The repository folder should be loadable directly as an unpacked extension. No bundlers, transpilers or minifiers unless the master approves one for a specific reason.
+- **Fast and simple** beats clever and complete, every time.
+- **External dependencies only when they add real value.** A dependency has to do something substantial that would be hard to write ourselves; Mediabunny for merging video and audio is the standard. Nothing trivial (no left-pad), and nothing we could write in an afternoon.
+- **Vendor every dependency.** Commit a copy into the repo under `vendor/`, with its licence file and a note of its version and where it came from. Nothing is fetched at build time or run time.
+
+### Node.js
+
+- Node.js is grudgingly allowed **for validation only**: running tests (`node --test`) and syntax checks (`node --check`). The extension itself never depends on Node.js.
+- **No npm packages and no `package.json` dependencies.** If a validation task seems to need an npm package, write it with Node's standard library instead, or ask the master.
+
 ## Reddit data access
 
 - **Don't use Reddit's `.json` endpoints** (adding `.json` to a Reddit URL). The master has ruled them out.
