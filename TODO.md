@@ -20,10 +20,10 @@ described in the [README](README.md), and the working rules are in
 ## Media downloader
 
 - [x] Vendor Mediabunny.
-- [ ] Find media by scanning the page. Written and connected to the popup; waiting for its first live test in Brave.
+- [x] Find media by scanning the page.
 - [ ] Maybe: also watch the tab's network requests for media. Skipped for now, since scanning finds the videos without it. Add it only if the live tests show media being missed.
-- [ ] Merge Reddit video and audio into one MP4, falling back to separate files. Written, and tested in Node on a real Reddit video; waiting for its first live test in Brave.
-- [ ] Popup button that downloads everything. Written: it opens a download page that shows each item's progress. Waiting for its first live test in Brave.
+- [x] Merge Reddit video and audio into one MP4, falling back to separate files.
+- [x] Popup button that downloads everything, through a download page that shows each item's progress.
 - [ ] Maybe later: per-item downloads and a toolbar badge count. The master asked for one button that gets everything, so these wait until someone wants them.
 
 ## Account switcher
