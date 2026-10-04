@@ -16,7 +16,6 @@ described in the [README](README.md), and the working rules are in
 - [x] Markdown output.
 - [x] JSON output.
 - [x] Copy to clipboard and save as a file from the popup.
-- [ ] Include the post's images and gallery links in the export. A gallery post currently exports as text only.
 
 ## Media downloader
 
@@ -30,6 +29,10 @@ described in the [README](README.md), and the working rules are in
 - [ ] Save and restore each account's Reddit cookies, encrypted.
 - [ ] Switch accounts without logging out, re-saving the current account first.
 - [ ] Show the active account: toolbar badge, page marker and the "Posting as" label.
+
+## Later
+
+- [ ] Page export: include the post's own images and gallery links. A gallery post currently exports its text only (comment images already come through). Reuse the media downloader's gallery finding once it exists.
 
 ## Open questions
 
