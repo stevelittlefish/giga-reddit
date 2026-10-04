@@ -8,7 +8,7 @@ described in the [README](README.md), and the working rules are in
 
 - [x] Skeleton extension: manifest, service worker, empty popup, icons. Loads unpacked in Brave and does nothing.
 - [x] Test setup under `tests/` (see AGENTS.md for the command).
-- [ ] Shared "more replies" expander for hidden comments, used by page export and the media downloader.
+- [x] Shared "more replies" expander for hidden comments, used by page export and the media downloader.
 
 ## Page export
 
