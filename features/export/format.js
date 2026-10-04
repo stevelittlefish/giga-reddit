@@ -152,6 +152,11 @@ export function numberComments(comments) {
   return out;
 }
 
+// "u/name", except for Reddit's placeholders like [deleted], which aren't users.
+function userName(author) {
+  return /^\[.*\]$/.test(author) ? author : `u/${author}`;
+}
+
 function percent(ratio) {
   return Math.round(ratio * 100) + '%';
 }
@@ -170,7 +175,7 @@ export function toMarkdown(capture) {
 
   const meta = [
     ['Subreddit', post.subreddit && `r/${post.subreddit}`],
-    ['Author', post.author && `u/${post.author}`],
+    ['Author', post.author && userName(post.author)],
     ['Posted', post.created],
     ['Score', post.score !== null ? `${post.score}${post.upvoteRatio !== null ? ` (${percent(post.upvoteRatio)} upvoted)` : ''}` : null],
     ['Flair', post.flair],
@@ -193,7 +198,7 @@ export function toMarkdown(capture) {
 
   for (const comment of comments) {
     const details = [
-      comment.author ? `u/${comment.author}` : 'unknown',
+      comment.author ? userName(comment.author) : 'unknown',
       comment.author && comment.author === post.author ? 'OP' : null,
       comment.score !== null ? `${comment.score} ${Math.abs(comment.score) === 1 ? 'point' : 'points'}` : null,
       comment.created,

@@ -95,6 +95,7 @@ const capture = {
   comments: [
     { id: 't1_a', parentId: null, author: 'someone', created: '2026-10-04T13:00:00.000+0000', score: 2, depth: 0, permalink: '/r/test/comments/abc123/comment/a/', collapsed: false, body: body(el('p', ['Hi'])) },
     { id: 't1_b', parentId: 't1_a', author: 'op_person', created: '2026-10-04T13:05:00.000+0000', score: 5, depth: 1, permalink: '/r/test/comments/abc123/comment/b/', collapsed: false, body: body(el('p', ['Reply'])) },
+    { id: 't1_d', parentId: 't1_b', author: '[deleted]', created: null, score: null, depth: 2, permalink: null, collapsed: false, body: null },
     { id: 't1_c', parentId: null, author: 'AutoModerator', created: '2026-10-04T12:00:01.000+0000', score: 1, depth: 0, permalink: '/r/test/comments/abc123/comment/c/', collapsed: true, body: null },
   ],
 };
@@ -104,13 +105,14 @@ test('markdown export has the post, metadata, note and numbered comments', () =>
   assert.match(md, /^# A Title: With Ünicode!\n/);
   assert.match(md, /- Score: 31 \(64% upvoted\)/);
   assert.match(md, /- Flair: Rant/);
-  assert.match(md, /- Comments: 54 on Reddit, 3 captured/);
+  assert.match(md, /- Comments: 54 on Reddit, 4 captured/);
   assert.match(md, /- URL: https:\/\/www\.reddit\.com\/r\/test\/comments\/abc123\/a_title\//);
   assert.doesNotMatch(md, /- Link:/);
   assert.match(md, /\nPost body\n/);
   assert.match(md, /Note: 3 "more replies" button\(s\) were not expanded because the click limit \(5\) was reached/);
   assert.match(md, /### \[1\] u\/someone · 2 points · 2026-10-04T13:00:00\.000\+0000\n\nHi\n/);
   assert.match(md, /### \[1\.1\] u\/op_person · OP · 5 points/);
+  assert.match(md, /### \[1\.1\.1\] \[deleted\]\n/);
   assert.match(md, /### \[2\] u\/AutoModerator · 1 point · .* · collapsed by Reddit\n\n\*\(no text\)\*/);
 });
 
@@ -123,7 +125,7 @@ test('json export is valid, ordered and marks OP', () => {
   const data = JSON.parse(toJson(capture));
   assert.equal(data.post.body, 'Post body');
   assert.equal(data.post.permalink, 'https://www.reddit.com/r/test/comments/abc123/a_title/');
-  assert.deepEqual(data.comments.map(c => [c.path, c.isOp, c.body]), [['1', false, 'Hi'], ['1.1', true, 'Reply'], ['2', false, '']]);
+  assert.deepEqual(data.comments.map(c => [c.path, c.isOp, c.body]), [['1', false, 'Hi'], ['1.1', true, 'Reply'], ['1.1.1', false, ''], ['2', false, '']]);
 });
 
 test('file names are readable and unique per post', () => {
