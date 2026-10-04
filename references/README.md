@@ -81,8 +81,9 @@ Gaps compared with Giga Reddit's plans:
 
 The master's own earlier Manifest V3 extension (about 350 lines plus a vendored
 library). **It's our own code, so the clean-room rule doesn't apply: it may be
-copied and adapted directly.** It isn't in a git repository yet, so it lives outside `references/`
-for now.
+copied and adapted directly.** It deliberately isn't in a git repository, so it
+lives outside `references/`, at `~/scratch/reddit-video-grabber` on the master's
+machine.
 
 How it finds media:
 
