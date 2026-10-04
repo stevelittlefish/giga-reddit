@@ -81,7 +81,7 @@ Each feature folder holds everything for that feature, using these file names wh
 ## Reddit data access
 
 - **Don't use Reddit's `.json` endpoints** (adding `.json` to a Reddit URL). The master has ruled them out.
-- Read data from the page DOM instead. Keep Reddit-specific selectors together in one module per feature, so a Reddit redesign means fixing one file.
+- Read data from the page DOM instead. Keep each feature's Reddit selectors in that feature's `selectors.js` (see Layout), so a Reddit redesign means fixing one file per feature.
 - Verify element names and attributes against the live site in Brave before relying on them. Don't guess selectors.
 
 ## Reference projects
@@ -95,7 +95,7 @@ Each feature folder holds everything for that feature, using these file names wh
   - **Separate people for studying and implementing.** An agent that has read a third-party reference's source must not write the code for that feature. Implementation is done by a fresh agent session that has never opened that reference's source, working only from the plain-language descriptions. The session that wrote the initial documentation read the source of the third-party references, so it writes no code.
   - If you're unsure whether something counts as copying, write it from scratch.
 - Run `references/pull.sh` to clone or update them. A fresh checkout has none.
-- When build tooling is chosen, make sure linters, type checkers and bundlers exclude `references/`.
+- Keep `references/` out of anything that scans the repo. Tests run from `tests/` only, and syntax checks must never be pointed at the whole repo.
 
 ## Banned terms
 
