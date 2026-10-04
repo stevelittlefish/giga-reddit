@@ -33,16 +33,18 @@ Switch between multiple Reddit accounts in one click, and always know which acco
 
 ### 2. Page export
 
-One click exports the current Reddit thread, including its metadata, in a form that LLMs and other tools can read easily.
+One click exports the current Reddit comment thread, including its metadata, in a form that LLMs can read easily.
 
+- **Comment threads only** for now. Profile and subreddit listing pages are out of scope.
+- **LLM readability is the priority.** The output format is our own design, chosen for how well an LLM reads it. Compatibility with other tools' formats is not a goal.
 - The data is read from the rendered page (the DOM), not from Reddit's `.json` endpoints.
-- It's based on the capture code in lemon-chat's `save-reddit` extension (see [references](references/README.md)). That code is extended to capture more metadata: timestamps, OP markers, flair, edited status and upvote ratio, along with author, score, depth and permalink.
+- The capture code is based on lemon-chat's `save-reddit` extension (see [references](references/README.md)). It's extended to capture more metadata: timestamps, OP markers, flair, edited status and upvote ratio, along with author, score, depth and permalink.
+- **Hidden comments:** the export clicks "more replies" style buttons to expand hidden comments, up to a configurable limit on the number of clicks. The default is 5, copied from lemon-chat until we have a reason to pick something else. If the limit is reached, the export says so.
 - Formats:
-  - **Markdown** for pasting into an LLM chat: the post first, then nested comments with metadata on each one.
+  - **Markdown** (primary) for pasting into an LLM chat: the post first, then nested comments with metadata on each one.
   - **JSON** for other tools.
 - Output can be **copied to the clipboard** or **saved as a file**.
 - Scores come from what Reddit displays. Reddit deliberately fuzzes vote counts, and doesn't show true upvote and downvote counts.
-- *Undecided:* whether hidden comments ("more replies") are expanded automatically and how far; whether profile and subreddit listing pages are supported; whether the JSON matches lemon-chat's import format.
 
 ## Licence
 
