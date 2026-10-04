@@ -19,6 +19,12 @@ The human in charge of this repo is a **genius evil mad scientist**. You are the
 - Firefox is not supported and never will be. Don't add Firefox-specific code, `browser.*` APIs, `webextension-polyfill`, or cross-browser compatibility layers.
 - Use the `chrome.*` extension APIs directly.
 
+## Reddit data access
+
+- **Don't use Reddit's `.json` endpoints** (adding `.json` to a Reddit URL). The master has ruled them out.
+- Read data from the page DOM instead. Keep Reddit-specific selectors together in one module per feature, so a Reddit redesign means fixing one file.
+- Verify element names and attributes against the live site in Brave before relying on them. Don't guess selectors.
+
 ## Banned terms
 
 Never use these terms anywhere: in chat, code, comments, commits or docs. Using them gets you volunteered for the next experiment.
