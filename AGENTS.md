@@ -58,6 +58,7 @@ vendor/
 icons/                   Extension icons.
 tests/                   Node tests, mirroring the paths of the code they test.
 references/              Reference projects. Not part of the extension (see below).
+TODO.md                  The high-level plan.
 ```
 
 Each feature folder holds everything for that feature, using these file names where they apply:
@@ -112,6 +113,7 @@ Find another way to say it.
 
 - Do **not** use agent-side memory systems for this project. Everything worth remembering goes in this repo, mainly in this file or the README.
 - If you learn something future agents need, propose an edit to this file.
+- The high-level plan lives in [TODO.md](TODO.md). Check it before starting work, and tick items off (or add new ones) in the same commit as the work.
 
 ## Git
 

@@ -4,7 +4,7 @@ A Chrome extension that fixes the things about Reddit that shouldn't need fixing
 
 Built for Brave, works in Google Chrome. Firefox is not supported.
 
-> **Status:** design stage. Nothing is built yet.
+> **Status:** design stage. Nothing is built yet. See the [TODO list](TODO.md) for the plan.
 
 ## Features
 

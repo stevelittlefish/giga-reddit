@@ -1,0 +1,37 @@
+# TODO
+
+High-level plan for Giga Reddit. Tick items off as they land. The features are
+described in the [README](README.md), and the working rules are in
+[AGENTS.md](AGENTS.md).
+
+## Foundations
+
+- [ ] Skeleton extension: manifest, service worker, empty popup, icons. Loads unpacked in Brave and does nothing.
+- [ ] Test setup under `tests/`, run with `node --test tests/`.
+- [ ] Shared "more replies" expander for hidden comments, used by page export and the media downloader.
+
+## Page export
+
+- [ ] Capture the post and comments from the rendered page, including the extra metadata.
+- [ ] Markdown output.
+- [ ] JSON output.
+- [ ] Copy to clipboard and save as a file from the popup.
+
+## Media downloader
+
+- [ ] Vendor Mediabunny.
+- [ ] Find media by watching the tab's network requests and scanning the page.
+- [ ] Merge Reddit video and audio into one MP4, falling back to separate files.
+- [ ] Popup list with per-item downloads, "download everything" and a badge count.
+
+## Account switcher
+
+- [ ] Save and restore each account's Reddit cookies, encrypted.
+- [ ] Switch accounts without logging out, re-saving the current account first.
+- [ ] Show the active account: toolbar badge, page marker and the "Posting as" label.
+
+## Open questions
+
+- [ ] Confirm the reddit-video-grabber source is available on this machine.
+- [ ] Find a reliable way to read the logged-in username on current Reddit.
+- [ ] Check whether Reddit refreshes session cookies after they've been saved.
