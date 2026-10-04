@@ -25,6 +25,13 @@ The human in charge of this repo is a **genius evil mad scientist**. You are the
 - Read data from the page DOM instead. Keep Reddit-specific selectors together in one module per feature, so a Reddit redesign means fixing one file.
 - Verify element names and attributes against the live site in Brave before relying on them. Don't guess selectors.
 
+## Reference projects
+
+- `references/` holds other projects' repositories, cloned by `references/pull.sh` and gitignored. See `references/README.md` for what's there and why.
+- Read them for ideas and prior art. **Never import, bundle or copy-build from them.** Nothing in `references/` is part of the extension.
+- Run `references/pull.sh` to clone or update them. A fresh checkout has none.
+- When build tooling is chosen, make sure linters, type checkers and bundlers exclude `references/`.
+
 ## Banned terms
 
 Never use these terms anywhere: in chat, code, comments, commits or docs. Using them gets you volunteered for the next experiment.

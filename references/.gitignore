@@ -1,0 +1,9 @@
+# Everything in here is a clone made by pull.sh. Ignore all of it, and keep only
+# the files that explain how to get it back.
+#
+# This uses a wildcard, not a list of directory names, so adding a repository
+# means editing pull.sh alone and never this file.
+*
+!.gitignore
+!pull.sh
+!README.md
