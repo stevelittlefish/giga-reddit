@@ -77,7 +77,7 @@ Each feature folder holds everything for that feature, using these file names wh
 ## Development
 
 - **Load the extension:** open `brave://extensions` (or `chrome://extensions`), turn on developer mode, click **Load unpacked**, and select the repo root. Reload it there after changes.
-- **Run the tests:** `node --test tests/`
+- **Run the tests:** `node --test 'tests/**/*.test.js'` from the repo root. Keep the quotes so Node expands the glob, not the shell. A bare `node --test tests/` doesn't work, because Node treats the folder as a file to run. Test files are named `*.test.js`.
 - **Check syntax:** `node --check <file>`
 - **Test against the real Reddit** in Brave with Shields on, logged in. Unit tests can't cover DOM code, so check DOM changes by hand on real threads.
 
