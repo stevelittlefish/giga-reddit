@@ -28,9 +28,9 @@ described in the [README](README.md), and the working rules are in
 
 ## Account switcher
 
-- [ ] Save and restore each account's Reddit cookies, encrypted.
-- [ ] Switch accounts without logging out, re-saving the current account first.
-- [ ] Show the active account: toolbar badge, page marker and the "Posting as" label.
+- [x] Save and restore each account's Reddit cookies, encrypted.
+- [x] Switch accounts without logging out, re-saving the current account first.
+- [x] Show the active account: toolbar badge, page marker and the "Posting as" label.
 
 ## Later
 

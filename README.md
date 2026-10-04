@@ -8,7 +8,7 @@ A Chrome extension that fixes the things about Reddit that shouldn't need fixing
 
 Built for Brave, works in Google Chrome. Firefox is not supported.
 
-> **Status:** design stage. Nothing is built yet. See the [TODO list](TODO.md) for the plan.
+> **Status:** all three features work: the account switcher, page export and the media downloader. Some gaps remain, such as very large threads. See the [TODO list](TODO.md).
 
 ## Features
 
