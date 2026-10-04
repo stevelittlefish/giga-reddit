@@ -34,4 +34,7 @@ described in the [README](README.md), and the working rules are in
 
 - [x] Confirm the reddit-video-grabber source is available on this machine. It is, at `~/scratch/reddit-video-grabber`.
 - [ ] Find a reliable way to read the logged-in username on current Reddit.
+- [ ] Big threads only show about 100 comments at first and load more as you scroll. Find out how, so export and the media downloader can get the rest.
+- [ ] Find the markup for edited comments and comment author flair, so export can include them.
+- [ ] Decide what to do about "More replies" links (Reddit's continue-thread links), which open a separate page instead of loading in place.
 - [ ] Check whether Reddit refreshes session cookies after they've been saved.

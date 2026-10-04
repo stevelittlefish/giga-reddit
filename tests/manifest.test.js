@@ -42,3 +42,10 @@ test('nothing in the manifest points into references/', () => {
     assert.ok(!file.startsWith('references/'), `forbidden: ${file}`);
   }
 });
+
+test('every file page export injects exists', async () => {
+  const { FILES } = await import('../features/export/popup.js');
+  for (const file of FILES) {
+    assert.ok(existsSync(join(root, file)), `missing: ${file}`);
+  }
+});

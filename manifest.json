@@ -3,6 +3,12 @@
   "name": "Giga Reddit",
   "version": "0.1.0",
   "description": "Fixes the things about Reddit that shouldn't need fixing.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "storage"
+  ],
   "background": {
     "service_worker": "background.js",
     "type": "module"

@@ -1,2 +1,5 @@
-// The popup. Currently a very small room with nothing in it. Features will
-// move in once they've been built.
+// The popup. Each feature brings its own section; this file just wakes them up.
+
+import { initExport } from '../features/export/popup.js';
+
+initExport(document.getElementById('export'));

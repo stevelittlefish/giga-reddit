@@ -7,7 +7,22 @@
 </head>
 <body>
   <h1>Giga Reddit</h1>
-  <p class="empty">Nothing here yet.</p>
+
+  <section id="export">
+    <h2>Export thread</h2>
+    <div class="buttons">
+      <button type="button" data-action="md-copy">Copy Markdown</button>
+      <button type="button" data-action="md-save">Save Markdown</button>
+      <button type="button" data-action="json-copy">Copy JSON</button>
+      <button type="button" data-action="json-save">Save JSON</button>
+    </div>
+    <label class="setting">
+      "More replies" buttons to click
+      <input type="number" min="0" max="500" step="1" data-max-clicks>
+    </label>
+    <p class="status" data-status></p>
+  </section>
+
   <script type="module" src="popup.js"></script>
 </body>
 </html>
