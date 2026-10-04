@@ -2,6 +2,8 @@
 // node --test can poke at it. Bodies arrive as the plain trees content.js
 // builds: strings for text, { tag, children, href?, src?, alt? } for elements.
 
+import { threadName } from '../../shared/names.js';
+
 const REDDIT = 'https://www.reddit.com';
 
 const BLOCK_TAGS = new Set([
@@ -229,13 +231,5 @@ export function toJson(capture) {
 
 /** A readable, unique file name: subreddit_postid_short-title.ext */
 export function exportFilename(post, extension) {
-  const slug = (post.title || '')
-    .toLowerCase()
-    .normalize('NFKD').replace(/[̀-ͯ]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 50)
-    .replace(/-+$/, '');
-  const id = (post.id || '').replace(/^t3_/, '');
-  return [post.subreddit, id, slug].filter(Boolean).join('_') + '.' + extension;
+  return threadName(post) + '.' + extension;
 }

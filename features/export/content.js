@@ -50,7 +50,7 @@ giga.export.capture = async function ({ maxClicks = 25 } = {}) {
     },
     comments: [...document.querySelectorAll(shared.comment)].map(comment => {
       const parent = comment.parentElement && comment.parentElement.closest(shared.comment);
-      const body = own(comment, sel.commentBody);
+      const body = own(comment, shared.commentBody);
       return {
         id: attr(comment, 'thingid'),
         parentId: parent ? attr(parent, 'thingid') : null,

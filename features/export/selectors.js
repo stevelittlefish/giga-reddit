@@ -9,7 +9,4 @@ giga.export.selectors = {
   // Inside shreddit-post. Most post metadata is on the element's own attributes.
   postBody: 'shreddit-post-text-body',
   postFlair: 'shreddit-post-flair',
-  // Inside shreddit-comment. Nested replies have the same slot, so only the
-  // comment's own match counts. Its id is "<thingid>-comment-rtjson-content".
-  commentBody: '[slot="comment"]',
 };

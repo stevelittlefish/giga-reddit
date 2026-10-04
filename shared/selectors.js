@@ -13,6 +13,10 @@ giga.shared.selectors = {
   post: 'shreddit-post',
   // Every comment, nested inside its parent comment.
   comment: 'shreddit-comment',
+  // A comment's own text, inside shreddit-comment. Nested replies have the same
+  // slot, so only the comment's own match counts. Its id is
+  // "<thingid>-comment-rtjson-content".
+  commentBody: '[slot="comment"]',
   // "N more replies" buttons that load replies in place. Checked on live
   // Reddit (2026-10-04): clicking one adds the replies without leaving the page.
   moreRepliesButton: 'faceplate-partial[slot="children"] button',
