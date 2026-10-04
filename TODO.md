@@ -12,10 +12,11 @@ described in the [README](README.md), and the working rules are in
 
 ## Page export
 
-- [ ] Capture the post and comments from the rendered page, including the extra metadata.
-- [ ] Markdown output.
+- [x] Capture the post and comments from the rendered page, including the extra metadata. Edited status and author flair are still missing (see open questions).
+- [x] Markdown output.
 - [ ] JSON output.
-- [ ] Copy to clipboard and save as a file from the popup.
+- [ ] Copy to clipboard and save as a file from the popup. Copying Markdown works; JSON and saving haven't been tried on live Reddit yet.
+- [ ] Include the post's images and gallery links in the export. A gallery post currently exports as text only.
 
 ## Media downloader
 
