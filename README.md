@@ -60,7 +60,7 @@ Download **all** the media in a Reddit thread, from the post and from every comm
   - Images and GIFs in posts and comments (`i.redd.it`, including GIFs that Reddit serves as MP4).
   - **Every image in a gallery post.**
   - **Only media embedded in the thread itself**, meaning what Reddit shows inline. Links to media on other sites (Imgur, YouTube and so on) are not followed.
-- **Reddit video** comes as separate video and audio streams. The downloader picks the best quality of each from the DASH manifest and merges them into one MP4 without re-encoding. If merging fails, it saves the two streams separately.
+- **Reddit video** comes as separate video and audio streams. The page's video player points at an HLS playlist (`HLSPlaylist.m3u8`) listing every quality, and each stream behind it is one whole MP4 file. The downloader picks the best quality of each and merges them into one MP4 without re-encoding. If merging fails, it saves the two streams separately. Some videos have no audio at all, and those are saved as video only.
 - **Images** and single-file MP4s are saved as they are.
 - The toolbar badge shows how many media items were found. There's a **one-click "download everything"**, and you can still download items one at a time.
 - **Merging video and audio** uses [Mediabunny](https://github.com/Vanilagy/mediabunny), a JavaScript library for reading and writing media files in the browser. It's the library reddit-video-grabber already uses successfully. It copies the streams without re-encoding, so merging is fast and the quality doesn't change. It's MPL-2.0 licensed, so its licence file ships alongside it.
