@@ -10,7 +10,7 @@ giga.shared = giga.shared || {};
  * Visible buttons go first; buttons inside collapsed comments come after.
  * @returns {Promise<{clicks: number, remaining: number, limitReached: boolean}>}
  */
-giga.shared.expandReplies = async function ({ maxClicks = 5, timeoutMs = 8000 } = {}) {
+giga.shared.expandReplies = async function ({ maxClicks = 25, timeoutMs = 8000 } = {}) {
   const sel = giga.shared.selectors;
   const tried = new WeakSet();
   const visible = el => el.getClientRects().length > 0;

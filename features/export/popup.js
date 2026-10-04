@@ -11,7 +11,7 @@ export const FILES = [
   'features/export/content.js',
 ];
 const THREAD_URL = /^https:\/\/(www\.)?reddit\.com\/r\/[^/]+\/comments\//;
-const DEFAULT_MAX_CLICKS = 5;
+const DEFAULT_MAX_CLICKS = 25;
 const STORAGE_KEY = 'export.maxClicks';
 
 export async function initExport(section) {

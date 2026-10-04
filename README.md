@@ -40,7 +40,7 @@ One click exports the current Reddit comment thread, including its metadata, in 
 - **LLM readability is the priority.** The output format is our own design, chosen for how well an LLM reads it. Compatibility with other tools' formats is not a goal.
 - The data is read from the rendered page (the DOM), not from Reddit's `.json` endpoints.
 - The capture code is based on lemon-chat's `save-reddit` extension (see [references](references/README.md)). It's extended to capture more metadata: timestamps, OP markers, flair, edited status and upvote ratio, along with author, score, depth and permalink.
-- **Hidden comments:** the export clicks "more replies" style buttons to expand hidden comments, up to a configurable limit on the number of clicks. The default is 5, copied from lemon-chat until we have a reason to pick something else. If the limit is reached, the export says so.
+- **Hidden comments:** the export clicks "more replies" style buttons to expand hidden comments, up to a configurable limit on the number of clicks. The default is 25. It started at 5, copied from lemon-chat, but on a 1,368-comment thread 5 clicks loaded only 13 more comments. More clicks make the export slower, because each one waits for its replies to load. If the limit is reached, the export says so.
 - Formats:
   - **Markdown** (primary) for pasting into an LLM chat: the post first, then nested comments with metadata on each one.
   - **JSON** for other tools.

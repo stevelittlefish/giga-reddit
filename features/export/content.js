@@ -5,7 +5,7 @@
 var giga = globalThis.giga || (globalThis.giga = {});
 giga.export = giga.export || {};
 
-giga.export.capture = async function ({ maxClicks = 5 } = {}) {
+giga.export.capture = async function ({ maxClicks = 25 } = {}) {
   const shared = giga.shared.selectors;
   const sel = giga.export.selectors;
 
