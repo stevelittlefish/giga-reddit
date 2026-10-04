@@ -32,6 +32,7 @@ The human in charge of this repo is a **genius evil mad scientist**. You are the
 - **Clean-room engineering.** References are inspiration only. Never copy their code, even with changes, and never translate it line by line. This applies to every reference, whatever its licence.
   - **Studying:** read a reference to learn *what* it does and *why*: the approach, the browser APIs it uses, and the pitfalls it hit. Write those findings as plain-language descriptions in `references/README.md`. Short identifiers (API names, element names, attribute names) are fine. Code snippets are not.
   - **Implementing:** work from our own README, `references/README.md` and the live Reddit page. Don't open reference source files while writing the code that replaces them.
+  - **Separate people for studying and implementing.** An agent that has read a reference's source must not write the code for that feature. Implementation is done by a fresh agent session that has never opened that reference's source, working only from the plain-language descriptions. The session that wrote the initial documentation read the source of every current reference, so it writes no code.
   - If you're unsure whether something counts as copying, write it from scratch.
 - Run `references/pull.sh` to clone or update them. A fresh checkout has none.
 - When build tooling is chosen, make sure linters, type checkers and bundlers exclude `references/`.
