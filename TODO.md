@@ -6,8 +6,8 @@ described in the [README](README.md), and the working rules are in
 
 ## Foundations
 
-- [ ] Skeleton extension: manifest, service worker, empty popup, icons. Loads unpacked in Brave and does nothing.
-- [ ] Test setup under `tests/`, run with `node --test tests/`.
+- [x] Skeleton extension: manifest, service worker, empty popup, icons. Loads unpacked in Brave and does nothing.
+- [x] Test setup under `tests/` (see AGENTS.md for the command).
 - [ ] Shared "more replies" expander for hidden comments, used by page export and the media downloader.
 
 ## Page export
@@ -32,6 +32,6 @@ described in the [README](README.md), and the working rules are in
 
 ## Open questions
 
-- [ ] Confirm the reddit-video-grabber source is available on this machine.
+- [x] Confirm the reddit-video-grabber source is available on this machine. It is, at `~/scratch/reddit-video-grabber`.
 - [ ] Find a reliable way to read the logged-in username on current Reddit.
 - [ ] Check whether Reddit refreshes session cookies after they've been saved.
