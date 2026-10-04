@@ -19,6 +19,7 @@ below saying why it's here and which parts are worth reading.
 | Repository | Why it's here |
 |---|---|
 | [lemon-chat](https://github.com/stevelittlefish/lemon-chat) | **Basis for the page export feature.** Our LLM chat. Its `extensions/save-reddit` extension already captures Reddit threads from the rendered page |
+| reddit-video-grabber (local only: `~/scratch/reddit-video-grabber`, not yet in git, so `pull.sh` can't fetch it) | **Basis for the media downloader.** The master's earlier extension for downloading Reddit videos and images |
 | [reddit-session-switcher](https://github.com/HejAsh/reddit-session-switcher) | **Basis for the account switcher.** A small MV3 extension that switches Reddit accounts by swapping session cookies |
 
 ## lemon-chat's Reddit capture
@@ -72,3 +73,56 @@ Gaps compared with Giga Reddit's plans:
   checking.
 - Errors from `chrome.cookies` (`chrome.runtime.lastError`) are ignored.
 - Nothing constantly shows which account is active.
+
+## reddit-video-grabber
+
+The master's own earlier Manifest V3 extension (about 350 lines plus a vendored
+library). It isn't in a git repository yet, so it lives outside `references/`
+for now.
+
+How it finds media:
+
+- **Watching network traffic:** the background service worker uses
+  `chrome.webRequest.onBeforeRequest` on `*.redd.it` to record every media
+  request a tab makes. That catches anything that actually plays, including
+  comment GIFs (which Reddit serves as MP4s). Found items are stored per tab
+  in `chrome.storage.session`, the toolbar badge shows the count, and the list
+  is cleared when the tab navigates or closes.
+- **Scanning the page:** the popup injects a function with
+  `chrome.scripting.executeScript` that searches the page's HTML for media URLs.
+  It also fetches the thread's `.json`, which **Giga Reddit must not do** (see
+  AGENTS.md).
+- Kinds of URL it recognises:
+  - Reddit-hosted video on `v.redd.it`, as `HLSPlaylist.m3u8` or
+    `DASHPlaylist.mpd`. This includes videos attached to comments, under
+    `v.redd.it/link/<post>/asset/<id>/`, and comment links of the form
+    `reddit.com/link/<id>/video/<id>/player`.
+  - MP4s that already contain audio, or are silent GIFs: `packaged-media.redd.it`,
+    `preview.redd.it` and `external-preview.redd.it` with `format=mp4`, and
+    `i.redd.it/*.mp4`.
+  - Images on `i.redd.it` (jpg, png, gif, webp).
+
+How it downloads (an extension page, `downloader.html`, opened in a new tab):
+
+- **Reddit video comes as separate video and audio streams.** It fetches the
+  DASH manifest (`DASHPlaylist.mpd`), parses it with `DOMParser`, and picks the
+  video stream with the greatest height and the audio stream with the highest
+  bandwidth.
+- Some `v.redd.it` files need the signed query string from the original player
+  URL. It tries without it first, then with it.
+- **Merging:** it combines video and audio into one MP4 **without re-encoding**,
+  using the third-party library [Mediabunny](https://github.com/Vanilagy/mediabunny)
+  (vendored as `vendor/mediabunny.min.mjs`, **MPL-2.0**). If merging fails, it
+  saves the video and audio as separate files. If there's no audio stream, it
+  saves the video and says the video has no sound.
+- Files are saved with `chrome.downloads` to `Downloads/reddit-videos/`, and
+  duplicate names get a number added.
+- The popup lists everything found, with videos first, plus "Download all
+  videos" and "Download everything" buttons.
+
+Gaps and things to check:
+
+- The `.json` fetch has to go. Network watching and page scanning are what's left.
+- Gallery images (served from `preview.redd.it`) don't appear to be handled.
+- Media hosted outside Reddit (Imgur, YouTube and so on) isn't handled.
+- Downloads happen one after another in a separate tab, which has to stay open.

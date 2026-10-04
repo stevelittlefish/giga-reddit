@@ -47,6 +47,17 @@ One click exports the current Reddit comment thread, including its metadata, in 
 - Output can be **copied to the clipboard** or **saved as a file**.
 - Scores come from what Reddit displays. Reddit deliberately fuzzes vote counts, and doesn't show true upvote and downvote counts.
 
+### 3. Media downloader
+
+Download videos and images from Reddit posts and comments, with sound included.
+
+- It's based on the master's earlier reddit-video-grabber (see [references](references/README.md)).
+- It finds media in two ways. It **watches the media requests a tab makes**, so anything that plays gets caught, including comment GIFs. It also **scans the rendered page** for media links. It doesn't use Reddit's `.json` endpoints.
+- **Reddit video** comes as separate video and audio streams. The downloader picks the best quality of each from the DASH manifest and merges them into one MP4 without re-encoding. If merging fails, it saves the two streams separately.
+- **Images** and single-file MP4s are saved as they are.
+- The toolbar badge shows how many media items were found on the current page, and you can download one item or all of them.
+- *Undecided:* gallery support, media hosted outside Reddit, which library does the merging, and where files are saved.
+
 ## Licence
 
 See [LICENCE](LICENCE).
