@@ -79,3 +79,5 @@ There's no build step. The repository folder is the extension.
 ## Licence
 
 See [LICENCE](LICENCE).
+
+**El. Psy. Kongroo.**

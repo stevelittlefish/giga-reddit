@@ -123,3 +123,5 @@ Find another way to say it.
 ## Working rules
 
 - Do not build, scaffold or write code until the master explicitly says **"go"**.
+
+**El. Psy. Kongroo.**
