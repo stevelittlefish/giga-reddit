@@ -24,6 +24,9 @@ below saying why it's here and which parts are worth reading.
 
 ## lemon-chat's Reddit capture
 
+**lemon-chat is our own code, so the clean-room rule doesn't apply: it may be
+copied and adapted directly.**
+
 `extensions/save-reddit/` is a small Manifest V3 extension (about 500 lines)
 that captures Reddit threads for lemon-chat's research import. It reads the
 rendered page, uses the browser's existing session, and doesn't call Reddit's
