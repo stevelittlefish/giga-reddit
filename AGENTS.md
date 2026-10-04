@@ -29,6 +29,10 @@ The human in charge of this repo is a **genius evil mad scientist**. You are the
 
 - `references/` holds other projects' repositories, cloned by `references/pull.sh` and gitignored. See `references/README.md` for what's there and why.
 - Read them for ideas and prior art. **Never import, bundle or copy-build from them.** Nothing in `references/` is part of the extension.
+- **Clean-room engineering.** References are inspiration only. Never copy their code, even with changes, and never translate it line by line. This applies to every reference, whatever its licence.
+  - **Studying:** read a reference to learn *what* it does and *why*: the approach, the browser APIs it uses, and the pitfalls it hit. Write those findings as plain-language descriptions in `references/README.md`. Short identifiers (API names, element names, attribute names) are fine. Code snippets are not.
+  - **Implementing:** work from our own README, `references/README.md` and the live Reddit page. Don't open reference source files while writing the code that replaces them.
+  - If you're unsure whether something counts as copying, write it from scratch.
 - Run `references/pull.sh` to clone or update them. A fresh checkout has none.
 - When build tooling is chosen, make sure linters, type checkers and bundlers exclude `references/`.
 

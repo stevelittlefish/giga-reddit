@@ -4,6 +4,11 @@ These repositories are kept here to **read**, not to depend on. They're cloned
 and gitignored. Nothing in this folder is part of Giga Reddit, and nothing here
 should ever be imported by it.
 
+**Clean-room rule:** these are inspiration, not source material. We describe
+what they do in plain language here, then write our own implementation from
+those descriptions without copying any code. The full rule is in
+[AGENTS.md](../AGENTS.md).
+
 ```sh
 ./pull.sh      # clone anything missing, pull anything already present
 ```
@@ -43,8 +48,8 @@ and formatting are lost.
 ## reddit-session-switcher
 
 A Manifest V3 extension (about 400 lines of JavaScript) that does the core of
-Giga Reddit's account switcher. It's **MIT licensed**, so code copied from it
-must keep its copyright and licence notice.
+Giga Reddit's account switcher. It's MIT licensed, but that doesn't matter
+here, because we don't copy its code.
 
 How it works (`background.js`):
 
