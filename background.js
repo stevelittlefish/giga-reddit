@@ -2,5 +2,7 @@
 // module. The minions do the actual work; this file just signs the forms.
 
 import { initAccounts } from './features/accounts/background.js';
+import { initExport } from './features/export/background.js';
 
 initAccounts();
+initExport();

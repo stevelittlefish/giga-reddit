@@ -20,6 +20,8 @@ Saved logins never leave your browser. As with any site you stay logged into, so
 
 Export a comment thread (the post and its comments) as Markdown to paste into an LLM chat, or as JSON. Copy it to the clipboard or save it as a file. It expands hidden replies first, up to a limit you can set, so very large threads may not be captured in full.
 
+To copy just one conversation, right-click a comment and choose **Copy thread down to this comment**. That copies the post and the line of replies leading to that comment, top first, as Markdown. Comments that Reddit hides above a "Continue this thread" page are fetched and included.
+
 ### Media downloader
 
 Download the images, GIFs and videos from a thread, including those in comments and every image in a gallery. Reddit videos are saved with their sound. Files go to `Downloads/reddit-media/`, in a folder for each thread. Media linked from other sites, such as Imgur or YouTube, isn't downloaded.

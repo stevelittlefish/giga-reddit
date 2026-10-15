@@ -16,6 +16,7 @@ described in the [README](README.md), and the working rules are in
 - [x] Markdown output.
 - [x] JSON output.
 - [x] Copy to clipboard and save as a file from the popup.
+- [x] Right-click a comment to copy one reply chain: the post down to that comment, fetching ancestors that "Continue this thread" pages hide.
 
 ## Media downloader
 
@@ -43,6 +44,6 @@ described in the [README](README.md), and the working rules are in
 - [x] Find a reliable way to read the logged-in username on current Reddit. `GET /user/me/` redirects to `/user/<name>/`, and the page has `rs-current-user` (with `id` and `display-name`) inside a `<template>`, so only the template's `.content` can see it.
 - [ ] Big threads only show about 100 comments at first and load more as you scroll. Find out how, so export and the media downloader can get the rest.
 - [ ] Find the markup for edited comments and comment author flair, so export can include them.
-- [ ] Decide what to do about "More replies" links (Reddit's continue-thread links), which open a separate page instead of loading in place.
+- [ ] Decide what to do about "More replies" links (Reddit's continue-thread links), which open a separate page instead of loading in place. Found so far (2026-10-15): a comment's own page sends that comment and all its ancestors inside `<template>` elements, with `parentid` and `parent-permalink` on each, and the reply chain copy uses this. On those pages `depth` counts from the page's focused comment, so it can be negative. The full export still stops at these links.
 - [ ] Check whether Reddit refreshes session cookies after they've been saved.
 - [ ] Big galleries: check that every slide is in the page before you click through. The carousel has `fetch-ahead-count="3"`, which hints that it might not be.

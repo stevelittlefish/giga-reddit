@@ -173,6 +173,47 @@ function expansionNote(expansion) {
 export function toMarkdown(capture) {
   const { post } = capture;
   const comments = numberComments(capture.comments);
+  const lines = postSection(capture, commentCount(post, `${comments.length} captured`));
+
+  lines.push('', '---', '', '## Comments', '');
+  lines.push('Each comment starts with its position in the reply chain: [2.1] is the first reply to [2]. OP marks the post\'s author. Scores are as Reddit displays them.');
+  const note = expansionNote(capture.expansion);
+  if (note) lines.push('', `Note: ${note}`);
+
+  for (const comment of comments) lines.push(...commentSection(comment, post, comment.path));
+  return lines.join('\n') + '\n';
+}
+
+/**
+ * One reply chain as Markdown: the post, then each comment from the top-level
+ * one down to the chosen comment. capture is { url, capturedAt, post, chain,
+ * complete, stopReason }, with chain leaf first as chain.js builds it.
+ */
+export function toChainMarkdown(capture) {
+  const { post } = capture;
+  const comments = [...capture.chain].reverse();
+  const leaf = capture.chain[0];
+  const lines = postSection(capture, commentCount(post, `${comments.length} in this reply chain`), [
+    ['Chosen comment', leaf && absoluteUrl(leaf.permalink)],
+  ]);
+
+  lines.push('', '---', '', '## Reply chain', '');
+  lines.push('One line of replies from the post down to a chosen comment, top first. Each comment replies to the one above it; other replies are left out. OP marks the post\'s author. Scores are as Reddit displays them.');
+  if (!capture.complete) {
+    lines.push('', `Note: the chain doesn't reach the post. Earlier comments are missing${capture.stopReason ? ` because ${capture.stopReason}` : ''}.`);
+  }
+
+  comments.forEach((comment, i) => lines.push(...commentSection(comment, post, String(i + 1))));
+  return lines.join('\n') + '\n';
+}
+
+function commentCount(post, captured) {
+  return post.commentCount !== null ? `${post.commentCount} on Reddit, ${captured}` : captured;
+}
+
+// The title, metadata and body that start every Markdown export.
+function postSection(capture, comments, extra = []) {
+  const { post } = capture;
   const lines = [`# ${post.title}`, ''];
 
   const meta = [
@@ -181,9 +222,10 @@ export function toMarkdown(capture) {
     ['Posted', post.created],
     ['Score', post.score !== null ? `${post.score}${post.upvoteRatio !== null ? ` (${percent(post.upvoteRatio)} upvoted)` : ''}` : null],
     ['Flair', post.flair],
-    ['Comments', post.commentCount !== null ? `${post.commentCount} on Reddit, ${comments.length} captured` : `${comments.length} captured`],
+    ['Comments', comments],
     ['URL', absoluteUrl(post.permalink) || capture.url],
     ['Link', post.link && absoluteUrl(post.link) !== absoluteUrl(post.permalink) ? post.link : null],
+    ...extra,
     ['Captured', capture.capturedAt],
   ];
   for (const [label, value] of meta) {
@@ -192,24 +234,19 @@ export function toMarkdown(capture) {
 
   const body = bodyToMarkdown(post.body);
   if (body) lines.push('', body);
+  return lines;
+}
 
-  lines.push('', '---', '', '## Comments', '');
-  lines.push('Each comment starts with its position in the reply chain: [2.1] is the first reply to [2]. OP marks the post\'s author. Scores are as Reddit displays them.');
-  const note = expansionNote(capture.expansion);
-  if (note) lines.push('', `Note: ${note}`);
-
-  for (const comment of comments) {
-    const details = [
-      comment.author ? userName(comment.author) : 'unknown',
-      comment.author && comment.author === post.author ? 'OP' : null,
-      comment.score !== null ? `${comment.score} ${Math.abs(comment.score) === 1 ? 'point' : 'points'}` : null,
-      comment.created,
-      comment.collapsed ? 'collapsed by Reddit' : null,
-    ].filter(Boolean).join(' · ');
-    lines.push('', `### [${comment.path}] ${details}`, '', bodyToMarkdown(comment.body) || '*(no text)*');
-  }
-
-  return lines.join('\n') + '\n';
+// One comment's heading and body, labelled with its position.
+function commentSection(comment, post, label) {
+  const details = [
+    comment.author ? userName(comment.author) : 'unknown',
+    comment.author && comment.author === post.author ? 'OP' : null,
+    comment.score !== null ? `${comment.score} ${Math.abs(comment.score) === 1 ? 'point' : 'points'}` : null,
+    comment.created,
+    comment.collapsed ? 'collapsed by Reddit' : null,
+  ].filter(Boolean).join(' · ');
+  return ['', `### [${label}] ${details}`, '', bodyToMarkdown(comment.body) || '*(no text)*'];
 }
 
 /** The whole thread as JSON, with bodies as Markdown and comments in tree order. */

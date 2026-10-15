@@ -4,7 +4,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  absoluteUrl, bodyToMarkdown, numberComments, toMarkdown, toJson, exportFilename,
+  absoluteUrl, bodyToMarkdown, numberComments, toMarkdown, toChainMarkdown, toJson, exportFilename,
 } from '../../../features/export/format.js';
 
 const el = (tag, children = [], extra = {}) => ({ tag, children, ...extra });
@@ -119,6 +119,23 @@ test('markdown export has the post, metadata, note and numbered comments', () =>
 test('markdown export leaves out the note when nothing is missing', () => {
   const md = toMarkdown({ ...capture, expansion: { clicks: 1, remaining: 0, limitReached: false } });
   assert.doesNotMatch(md, /Note:/);
+});
+
+test('chain markdown runs from the top comment down to the chosen one', () => {
+  const [a, b, d] = capture.comments;
+  const md = toChainMarkdown({ ...capture, chain: [d, b, a], complete: true, stopReason: null });
+  assert.match(md, /- Comments: 54 on Reddit, 3 in this reply chain/);
+  assert.match(md, /\nPost body\n/);
+  assert.match(md, /## Reply chain/);
+  assert.match(md, /### \[1\] u\/someone[^]*### \[2\] u\/op_person · OP[^]*### \[3\] \[deleted\]\n/);
+  assert.doesNotMatch(md, /AutoModerator|Note:|Chosen comment/);
+});
+
+test('chain markdown says when the chain does not reach the post', () => {
+  const [, b] = capture.comments;
+  const md = toChainMarkdown({ ...capture, chain: [b], complete: false, stopReason: 'fetching them failed (Reddit answered 500)' });
+  assert.match(md, /- Chosen comment: https:\/\/www\.reddit\.com\/r\/test\/comments\/abc123\/comment\/b\//);
+  assert.match(md, /Note: the chain doesn't reach the post\. Earlier comments are missing because fetching them failed \(Reddit answered 500\)\./);
 });
 
 test('json export is valid, ordered and marks OP', () => {
